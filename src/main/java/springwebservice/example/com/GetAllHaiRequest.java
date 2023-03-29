@@ -10,7 +10,6 @@ package springwebservice.example.com;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,9 +23,6 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="hai" type="{http://com.example.springwebservice}hai"/>
- *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -35,37 +31,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "hai"
-})
-@XmlRootElement(name = "addHaiRequest")
-public class AddHaiRequest {
+@XmlType(name = "")
+@XmlRootElement(name = "getAllHaiRequest")
+public class GetAllHaiRequest {
 
-    @XmlElement(required = true)
-    protected Hai hai;
-
-    /**
-     * Gets the value of the hai property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Hai }
-     *     
-     */
-    public Hai getHai() {
-        return hai;
-    }
-
-    /**
-     * Sets the value of the hai property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Hai }
-     *     
-     */
-    public void setHai(Hai value) {
-        this.hai = value;
-    }
 
 }

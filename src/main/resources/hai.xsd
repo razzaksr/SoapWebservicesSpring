@@ -15,6 +15,19 @@
             <xsd:element name="message" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
+    <!--List of Hai's-->
+    <xsd:element name="getAllHaiRequest">
+        <xsd:complexType>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getAllHaiResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xsd:element name="hai" type="tns:hai" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
     <!--    Read by id request-->
     <xsd:element name="getHaiByIdRequest">
         <xsd:complexType>

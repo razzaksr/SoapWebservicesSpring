@@ -8,6 +8,8 @@
 
 package springwebservice.example.com;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="serviceStatus" type="{http://com.example.springwebservice}serviceStatus"/>
- *         &lt;element name="hai" type="{http://com.example.springwebservice}hai"/>
+ *         &lt;element name="hai" type="{http://com.example.springwebservice}hai" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,13 +42,13 @@ import javax.xml.bind.annotation.XmlType;
     "serviceStatus",
     "hai"
 })
-@XmlRootElement(name = "addHaiResponse")
-public class AddHaiResponse {
+@XmlRootElement(name = "getAllHaiResponse")
+public class GetAllHaiResponse {
 
     @XmlElement(required = true)
     protected ServiceStatus serviceStatus;
     @XmlElement(required = true)
-    protected Hai hai;
+    protected List<Hai> hai;
 
     /**
      * Gets the value of the serviceStatus property.
@@ -75,25 +77,30 @@ public class AddHaiResponse {
     /**
      * Gets the value of the hai property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Hai }
-     *     
-     */
-    public Hai getHai() {
-        return hai;
-    }
-
-    /**
-     * Sets the value of the hai property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the hai property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Hai }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getHai().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Hai }
+     * 
+     * 
      */
-    public void setHai(Hai value) {
-        this.hai = value;
+    public List<Hai> getHai() {
+        if (hai == null) {
+            hai = new ArrayList<Hai>();
+        }
+        return this.hai;
     }
 
 }

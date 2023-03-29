@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import springwebservice.example.com.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +20,24 @@ public class Endpoints {
 
     private static final String url="http://com.example.springwebservice";
     private Logger logger=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    @PayloadRoot(namespace = url,localPart = "getAllHaiRequest")
+    @ResponsePayload
+    public GetAllHaiResponse callEvery(@RequestPayload GetAllHaiRequest getAllHaiRequest){
+        GetAllHaiResponse response=new GetAllHaiResponse();
+        List<springwebservice.example.com.Hai> xmlHai=new ArrayList<>();
+        List<Hai> entityHai=service.list();
+
+        for(Hai h:entityHai){
+            springwebservice.example.com.Hai hi=new springwebservice.example.com.Hai();
+            BeanUtils.copyProperties(h,hi);
+            xmlHai.add(hi);
+        }
+
+        response.getHai().addAll(xmlHai);
+
+        return response;
+    }
 
     @PayloadRoot(namespace = url,localPart = "getHaiByIdRequest")
     @ResponsePayload
