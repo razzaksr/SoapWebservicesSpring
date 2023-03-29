@@ -21,6 +21,14 @@ public class Endpoints {
     private static final String url="http://com.example.springwebservice";
     private Logger logger=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    @PayloadRoot(namespace = url,localPart = "deleteByIdRequest")
+    @ResponsePayload
+    public DeleteByIdResponse callDelete(@RequestPayload DeleteByIdRequest deleteByIdRequest){
+        DeleteByIdResponse response=new DeleteByIdResponse();
+        response.setInfo(service.delete(deleteByIdRequest.getId()));
+        return response;
+    }
+
     @PayloadRoot(namespace = url,localPart = "getAllHaiRequest")
     @ResponsePayload
     public GetAllHaiResponse callEvery(@RequestPayload GetAllHaiRequest getAllHaiRequest){
