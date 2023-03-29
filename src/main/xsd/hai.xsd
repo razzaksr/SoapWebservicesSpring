@@ -1,0 +1,36 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://com.example.springwebservice"
+            targetNamespace="http://com.example.springwebservice"
+            elementFormDefault="qualified">
+    <xsd:complexType name="hai">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="price" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="serviceStatus">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:string"/>
+            <xsd:element name="message" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+<!--    create request-->
+    <xsd:element name="addHaiRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="hai" type="tns:hai"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+<!--    create response-->
+    <xsd:element name="addHaiResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xsd:element name="hai" type="tns:hai"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
