@@ -15,7 +15,24 @@
             <xsd:element name="message" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
-<!--    create request-->
+    <!--    Read by id request-->
+    <xsd:element name="getHaiByIdRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="id" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--    Read by id response-->
+    <xsd:element name="getHaiByIdResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xsd:element name="hai" type="tns:hai"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!--    create request-->
     <xsd:element name="addHaiRequest">
         <xsd:complexType>
             <xsd:sequence>
@@ -23,7 +40,7 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-<!--    create response-->
+    <!--    create response-->
     <xsd:element name="addHaiResponse">
         <xsd:complexType>
             <xsd:sequence>

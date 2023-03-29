@@ -6,9 +6,10 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import springwebservice.example.com.AddHaiRequest;
-import springwebservice.example.com.AddHaiResponse;
-import springwebservice.example.com.ServiceStatus;
+import springwebservice.example.com.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Endpoint
 public class Endpoints {
@@ -16,6 +17,21 @@ public class Endpoints {
     private HaiService service;
 
     private static final String url="http://com.example.springwebservice";
+    private Logger logger=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    @PayloadRoot(namespace = url,localPart = "getHaiByIdRequest")
+    @ResponsePayload
+    public GetHaiByIdResponse callRead(@RequestPayload GetHaiByIdRequest getHaiByIdRequest){
+        GetHaiByIdResponse response=new GetHaiByIdResponse();
+//        Hai read = service.read(getHaiByIdRequest.getId());
+//        springwebservice.example.com.Hai hai=new springwebservice.example.com.Hai();
+//        logger.log(Level.INFO,read.toString()+" "+hai.toString());
+        springwebservice.example.com.Hai hai=new springwebservice.example.com.Hai();
+        BeanUtils.copyProperties(service.read(getHaiByIdRequest.getId()),hai);
+//        BeanUtils.copyProperties(service.read(getHaiByIdRequest.getId()),hai);
+        response.setHai(hai);
+        return response;
+    }
 
     @PayloadRoot(namespace = url,localPart = "addHaiRequest")
     @ResponsePayload
