@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>-->
+    <script>
+        var soapRequest="<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:com=\"http://com.example.springwebservice\">\n" +
+            "   <soapenv:Header/>\n" +
+            "   <soapenv:Body>\n" +
+            "      <com:getAllHaiRequest/>\n" +
+            "   </soapenv:Body>\n" +
+            "</soapenv:Envelope>"
+        $(document).ready(()=>{
+
+            $("table").mouseenter(()=> {
+                alert("Mouse entered for "+soapRequest)
+                $.ajax({
+                    url: "http://localhost:8082/haiservice",
+                    type: "POST",
+                    dataType: "xml",
+                    //processData: false,
+                    contentType: "text/xml;charset=\"UTF-8\"",
+                    data: soapRequest,
+                    success: (data) => {
+                        //console.log((new XMLSerializer()).serializeToString(data));
+
+                        $(data).find('ns2\\:hai').each(function() {
+                          var id = $(this).find('ns2\\:id').text();
+                          var name = $(this).find('ns2\\:name').text();
+                          var price = $(this).find('ns2\\:price').text();
+                          console.log('id: ' + id + ', name: ' + name + ', price: ' + price);
+                          $("#result").append("<tr><td>"+id+"</td><td>"+name+"</td><td>"+price+"</td></tr>");
+                        });
+
+                        //alert((new XMLSerializer()).serializeToString(data))
+
+                        //alert($(xml).find("hai").text())
+                        //var son=xmlToJson(data);
+                        //alert(JSON.stringify(son))
+                        //alert(son.ns2)
+                        //alert(data)
+                        //data=$.parseXML(data);
+                        //alert($(data).find('ns2:getAllHaiResponse').text())
+                        /*var lists=$(data).find("ns2:hai").map(function(){
+                            return{
+                                id:$(this).find("ns2:id").text(),
+                                name:$(this).find("ns2:name").text(),
+                                price:$(this).find("ns2:price").text(),
+                            };
+                        }).get();
+                        alert(lists);*/
+                        //updateTable(lists);
+                    },
+                    error:()=>{
+                    alert("error")
+                    }
+                });
+            })
+            $("table").mouseleave(()=>{
+                $("#result").html("");
+            })
+            function updateTable(data) {
+  var tableBody = $("#result");
+  tableBody.empty();
+  $.each(data, function (index, item) {
+    var row = "<tr>" +
+              "<td>" + item.id + "</td>" +
+              "<td>" + item.name + "</td>" +
+              "<td>" + item.price + "</td>" +
+              "</tr>";
+    tableBody.append(row);
+  });
+}
+        })
+
+    </script>
+</head>
+<body>
+<h1>HAI</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th><th>Name</th><th>Price</th>
+    </tr>
+    </thead>
+    <tbody id="result">
+
+    </tbody>
+</table>
+</body>
+</html>

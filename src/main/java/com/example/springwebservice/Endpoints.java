@@ -19,6 +19,7 @@ public class Endpoints {
     private HaiService service;
 
     private static final String url="http://com.example.springwebservice";
+    //private static final String url="http://localhost:8082/haiservice";
     private Logger logger=Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @PayloadRoot(namespace = url,localPart = "deleteByIdRequest")
@@ -44,7 +45,10 @@ public class Endpoints {
 
         response.getHai().addAll(xmlHai);
 
+        logger.log(Level.INFO,"collected list is "+response);
+
         return response;
+        //return new ClientSoap().getAllHaiResponse();
     }
 
     @PayloadRoot(namespace = url,localPart = "getHaiByIdRequest")
