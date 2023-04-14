@@ -15,7 +15,7 @@
         $(document).ready(()=>{
 
             $("table").mouseenter(()=> {
-                alert("Mouse entered for "+soapRequest)
+                //alert("Mouse entered for "+soapRequest)
                 $.ajax({
                     url: "http://localhost:8082/haiservice",
                     type: "POST",
@@ -61,18 +61,6 @@
             $("table").mouseleave(()=>{
                 $("#result").html("");
             })
-            function updateTable(data) {
-  var tableBody = $("#result");
-  tableBody.empty();
-  $.each(data, function (index, item) {
-    var row = "<tr>" +
-              "<td>" + item.id + "</td>" +
-              "<td>" + item.name + "</td>" +
-              "<td>" + item.price + "</td>" +
-              "</tr>";
-    tableBody.append(row);
-  });
-}
         })
 
     </script>
